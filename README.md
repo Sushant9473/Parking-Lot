@@ -2,6 +2,9 @@
 
 A simplified implementation of a Parking Lot Management System demonstrating key design patterns and object-oriented principles.
 
+![Alt text](images/Parking.png)
+
+
 ## Features
 
 - **Multi-Floor Parking**: Support for multiple floors with different spot types
