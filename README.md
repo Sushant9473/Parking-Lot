@@ -19,7 +19,7 @@ A simplified implementation of a Parking Lot Management System demonstrating key
 1. **Strategy Pattern**: For pricing and spot allocation strategies
 2. **Factory Pattern**: For creating parking lot configurations
 3. **Builder Pattern**: For flexible parking lot construction
-4. **Observer Pattern**: For spot availability notifications
+4. **Observer Pattern**: For spot availability notifications (`DisplayBoard` is notified whenever a spot is occupied or freed)
 
 ## Project Structure
 
@@ -40,6 +40,9 @@ A simplified implementation of a Parking Lot Management System demonstrating key
 │   │   ├── NearestSlotStrategy.java
 │   │   ├── PricingStrategy.java
 │   │   └── PerHourPricingStrategy.java
+│   ├── observers/
+│   │   ├── SpotObserver.java
+│   │   └── DisplayBoard.java
 │   ├── factory/
 │   │   └── ParkingLotFactory.java
 │   └── Main.java

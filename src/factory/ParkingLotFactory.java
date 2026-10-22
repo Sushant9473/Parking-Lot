@@ -1,6 +1,7 @@
 package factory;
 
 import models.*;
+import observers.DisplayBoard;
 import strategies.*;
 import enums.SpotType;
 import java.util.*;
@@ -87,6 +88,12 @@ public class ParkingLotFactory {
                     int spotId = floor * 100 + spotPosition++;
                     allSpots.add(new ParkingSpot(spotId, SpotType.ELECTRIC, true));
                 }
+            }
+
+            // Display board observes every spot
+            DisplayBoard displayBoard = new DisplayBoard();
+            for (ParkingSpot spot : allSpots) {
+                spot.addObserver(displayBoard);
             }
 
             // Create parking lot

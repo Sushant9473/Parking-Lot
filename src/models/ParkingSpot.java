@@ -1,6 +1,9 @@
 package models;
 
 import enums.SpotType;
+import observers.SpotObserver;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParkingSpot {
     private final int spotId;
@@ -8,6 +11,7 @@ public class ParkingSpot {
     private final boolean hasChargingPoint;
     private boolean isAvailable;
     private Vehicle currentVehicle;
+    private final List<SpotObserver> observers = new ArrayList<>();
 
     public ParkingSpot(int spotId, SpotType type, boolean hasChargingPoint) {
         this.spotId = spotId;
@@ -22,12 +26,25 @@ public class ParkingSpot {
         }
         this.currentVehicle = vehicle;
         this.isAvailable = false;
+        notifyObservers();
         return true;
     }
 
     public synchronized void vacate() {
         this.currentVehicle = null;
         this.isAvailable = true;
+        notifyObservers();
+    }
+
+    // Observer pattern
+    public void addObserver(SpotObserver observer) {
+        observers.add(observer);
+    }
+
+    private void notifyObservers() {
+        for (SpotObserver observer : observers) {
+            observer.onSpotStatusChanged(this);
+        }
     }
 
     // Getters
